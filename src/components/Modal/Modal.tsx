@@ -1,6 +1,5 @@
 import React from "react";
 import { Pokemon } from "../../types/pokemon";
-import { CheckIcon } from "@heroicons/react/24/solid";
 
 interface ModalProps {
   isOpen: boolean;

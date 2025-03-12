@@ -45,6 +45,7 @@ const TrainerForm: React.FC = () => {
         </h1>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
           <Input
+            type="text"
             placeholder="First Name"
             {...register("firstName", {
               required: true,
@@ -53,6 +54,7 @@ const TrainerForm: React.FC = () => {
             error={errors.firstName?.message}
           />
           <Input
+            type="text"
             placeholder="Last Name"
             {...register("lastName", {
               required: true,

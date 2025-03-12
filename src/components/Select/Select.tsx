@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Pokemon } from "../../types/pokemon";
-import { CheckIcon } from "@heroicons/react/24/solid";
 
 interface SelectProps {
   options: Pokemon[];
@@ -15,6 +14,12 @@ const Select: React.FC<SelectProps> = ({ options, selected, onSelect }) => {
     pokemon.name.toLowerCase().includes(search.toLowerCase())
   );
 
+  const handleSelect = (pokemon: Pokemon) => {
+    if (selected.length < 4 && !selected.includes(pokemon)) {
+      onSelect(pokemon);
+    }
+  };
+
   return (
     <div className="space-y-2">
       <input
@@ -28,7 +33,7 @@ const Select: React.FC<SelectProps> = ({ options, selected, onSelect }) => {
         {filteredOptions.map((pokemon) => (
           <li
             key={pokemon.name}
-            onClick={() => onSelect(pokemon)}
+            onClick={() => handleSelect(pokemon)}
             className={`p-3 hover:bg-gray-100 cursor-pointer transition-colors ${
               selected.includes(pokemon) ? "bg-blue-50" : ""
             }`}
@@ -37,6 +42,9 @@ const Select: React.FC<SelectProps> = ({ options, selected, onSelect }) => {
           </li>
         ))}
       </ul>
+      {selected.length === 4 && (
+        <p className="text-sm text-green-600">You have selected 4 Pokémon.</p>
+      )}
     </div>
   );
 };
