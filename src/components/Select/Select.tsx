@@ -15,7 +15,7 @@ const Select: React.FC<SelectProps> = ({ options, selected, onSelect }) => {
   );
 
   const handleSelect = (pokemon: Pokemon) => {
-    if (selected.length < 4 && !selected.includes(pokemon)) {
+    if (selected.length < 4 && !selected.some(p => p.name === pokemon.name)) {
       onSelect(pokemon);
     }
   };
@@ -35,7 +35,7 @@ const Select: React.FC<SelectProps> = ({ options, selected, onSelect }) => {
             key={pokemon.name}
             onClick={() => handleSelect(pokemon)}
             className={`p-3 hover:bg-gray-100 cursor-pointer transition-colors ${
-              selected.includes(pokemon) ? "bg-blue-50" : ""
+              selected.some(p => p.name === pokemon.name) ? "bg-blue-50" : ""
             }`}
           >
             {pokemon.name}
