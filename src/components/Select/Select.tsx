@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Pokemon } from "../../types/pokemon";
+import { CheckIcon } from "@heroicons/react/24/solid";
 
 interface SelectProps {
   options: Pokemon[];

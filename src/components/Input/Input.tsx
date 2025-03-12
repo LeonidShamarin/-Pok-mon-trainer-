@@ -1,27 +1,14 @@
 import React from "react";
 
-interface InputProps {
-  type: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   error?: string;
 }
 
-const Input: React.FC<InputProps> = ({
-  type,
-  placeholder,
-  value,
-  onChange,
-  error,
-}) => {
+const Input: React.FC<InputProps> = ({ error, ...props }) => {
   return (
     <div>
       <input
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
+        {...props}
         className={`w-full p-3 border ${
           error ? "border-red-500" : "border-gray-300"
         } rounded-lg focus:outline-none focus:ring-2 ${
