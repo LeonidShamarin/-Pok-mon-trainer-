@@ -2,18 +2,20 @@ import React from "react";
 
 interface ButtonProps {
   children: React.ReactNode;
-  onClick: () => void;
+  onClick?: () => void;
   disabled?: boolean;
+  type?: "button" | "submit" | "reset";
 }
 
-const Button: React.FC<ButtonProps> = ({ children, onClick, disabled }) => {
+const Button: React.FC<ButtonProps> = ({ children, onClick, disabled, type = "button" }) => {
   return (
     <button
+      type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`px-4 py-2 bg-blue-500 text-white rounded ${
+      className={`w-full px-4 py-2 bg-blue-500 text-white rounded-lg ${
         disabled ? "opacity-50 cursor-not-allowed" : "hover:bg-blue-600"
-      }`}
+      } transition-colors`}
     >
       {children}
     </button>

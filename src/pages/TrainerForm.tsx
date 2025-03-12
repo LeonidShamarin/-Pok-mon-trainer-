@@ -34,35 +34,40 @@ const TrainerForm: React.FC = () => {
   };
 
   return (
-    <div className="p-6 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Pokémon Trainer Form</h1>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-        <Input
-          type="text"
-          placeholder="First Name"
-          {...register("firstName", { required: true, validate: validateName })}
-          error={errors.firstName?.message}
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50 flex items-center justify-center p-6">
+      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center text-gray-800 mb-6">Pokémon Trainer Form</h1>
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <Input
+            type="text"
+            placeholder="First Name"
+            {...register("firstName", { required: true, validate: validateName })}
+            error={errors.firstName?.message}
+          />
+          <Input
+            type="text"
+            placeholder="Last Name"
+            {...register("lastName", { required: true, validate: validateName })}
+            error={errors.lastName?.message}
+          />
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">Select Your Pokémon Team</label>
+            <Select
+              options={pokemonList}
+              selected={selectedPokemon}
+              onSelect={handleSelect}
+            />
+          </div>
+          <Button type="submit" disabled={selectedPokemon.length !== 4}>
+            Submit
+          </Button>
+        </form>
+        <Modal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          selectedPokemon={selectedPokemon}
         />
-        <Input
-          type="text"
-          placeholder="Last Name"
-          {...register("lastName", { required: true, validate: validateName })}
-          error={errors.lastName?.message}
-        />
-        <Select
-          options={pokemonList}
-          selected={selectedPokemon}
-          onSelect={handleSelect}
-        />
-        <Button type="submit" disabled={selectedPokemon.length !== 4}>
-          Submit
-        </Button>
-      </form>
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        selectedPokemon={selectedPokemon}
-      />
+      </div>
     </div>
   );
 };

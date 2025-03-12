@@ -22,11 +22,13 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`w-full p-2 border rounded ${
+        className={`w-full p-3 border ${
           error ? "border-red-500" : "border-gray-300"
+        } rounded-lg focus:outline-none focus:ring-2 ${
+          error ? "focus:ring-red-500" : "focus:ring-blue-500"
         }`}
       />
-      {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+      {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
     </div>
   );
 };
